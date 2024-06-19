@@ -623,7 +623,7 @@ func createProtoTimeseriesWithOld(numSamples, baseTs int64, extraLabels ...label
 			Labels: []prompb.Label{{Name: "__name__", Value: name}},
 			Samples: []prompb.Sample{
 				{
-					Timestamp: baseTs + int64(j),
+					Timestamp: baseTs + j,
 					Value:     float64(j),
 				},
 			},
