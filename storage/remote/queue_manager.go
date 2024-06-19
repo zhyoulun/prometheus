@@ -1742,12 +1742,9 @@ func buildTimeSeries(timeSeries []prompb.TimeSeries, filter func(prompb.TimeSeri
 	var lowest int64
 	var droppedSamples, droppedExemplars, droppedHistograms int
 
-	//keepIdx := 0
 	lowest = math.MaxInt64
-	//for i, ts := range timeSeries {
 	timeSeries = slices.DeleteFunc(timeSeries, func(ts prompb.TimeSeries) bool {
 		if filter != nil && filter(ts) {
-			//fmt.Println("deleteing")
 			if len(ts.Samples) > 0 {
 				droppedSamples++
 			}
@@ -1782,13 +1779,8 @@ func buildTimeSeries(timeSeries []prompb.TimeSeries, filter func(prompb.TimeSeri
 			lowest = ts.Histograms[0].Timestamp
 		}
 		return false
-		// Move the current element to the write position and increment the write pointer
-		//timeSeries[keepIdx] = timeSeries[i]
-		//keepIdx++
 	})
 
-	//timeSeries = timeSeries[:keepIdx]
-	//fmt.Println("timeseries: ", timeSeries)
 	return highest, lowest, timeSeries, droppedSamples, droppedExemplars, droppedHistograms
 }
 
