@@ -263,6 +263,7 @@ type Options struct {
 	EnableRemoteWriteReceiver  bool
 	EnableOTLPWriteReceiver    bool
 	IsAgent                    bool
+	CTZeroIngestionEnabled     bool
 	AppName                    string
 
 	AcceptRemoteWriteProtoMsgs []config.RemoteWriteProtoMsg
@@ -357,6 +358,7 @@ func New(logger log.Logger, o *Options) *Handler {
 		o.EnableRemoteWriteReceiver,
 		o.AcceptRemoteWriteProtoMsgs,
 		o.EnableOTLPWriteReceiver,
+		o.CTZeroIngestionEnabled,
 	)
 
 	if o.RoutePrefix != "/" {
