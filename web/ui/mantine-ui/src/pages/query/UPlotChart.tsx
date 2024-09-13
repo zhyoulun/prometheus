@@ -24,6 +24,7 @@ export interface UPlotChartProps {
   width: number;
   showExemplars: boolean;
   displayMode: GraphDisplayMode;
+  startYAtZero: boolean;
   onSelectRange: (start: number, end: number) => void;
 }
 
@@ -34,6 +35,7 @@ const UPlotChart: FC<UPlotChartProps> = ({
   range: { startTime, endTime, resolution },
   width,
   displayMode,
+  startYAtZero,
   onSelectRange,
 }) => {
   const [options, setOptions] = useState<uPlot.Options | null>(null);
@@ -60,6 +62,7 @@ const UPlotChart: FC<UPlotChartProps> = ({
       width,
       data,
       useLocalTime,
+      startYAtZero,
       theme === "light",
       onSelectRange
     );
@@ -81,6 +84,7 @@ const UPlotChart: FC<UPlotChartProps> = ({
     useLocalTime,
     theme,
     onSelectRange,
+    startYAtZero,
   ]);
 
   if (options === null || processedData === null) {

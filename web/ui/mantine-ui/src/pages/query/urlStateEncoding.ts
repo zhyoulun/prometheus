@@ -63,6 +63,9 @@ export const decodePanelOptionsFromURLParams = (query: string): Panel[] => {
       panel.visualizer.displayMode =
         value === "1" ? GraphDisplayMode.Stacked : GraphDisplayMode.Lines;
     });
+    decodeSetting("start_y_at_zero", (value) => {
+      panel.visualizer.startYAtZero = value === "1";
+    });
     decodeSetting("show_exemplars", (value) => {
       panel.visualizer.showExemplars = value === "1";
     });
@@ -171,6 +174,7 @@ export const encodePanelOptionsToURLParams = (
     }
 
     addParam(idx, "display_mode", p.visualizer.displayMode);
+    addParam(idx, "start_y_at_zero", p.visualizer.startYAtZero ? "1" : "0");
     addParam(idx, "show_exemplars", p.visualizer.showExemplars ? "1" : "0");
   });
 
